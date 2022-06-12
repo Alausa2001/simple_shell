@@ -1,3 +1,4 @@
+#include <sys/wait.h>
 #include "main.h"
 /**
  * execute - execute the command
@@ -8,7 +9,7 @@ int execute(char **cmd)
 {
 	pid_t pid, wpid;
 	int status;
-	char **envp = environ;
+	char **envp = NULL;
 
 	pid = fork();
 	if (pid < 0)
@@ -17,7 +18,7 @@ int execute(char **cmd)
 	}
 	else if (pid == 0)
 	{
-		if (execve(cmd[0], cmd, env) < 0)
+		if (execve(cmd[0], cmd, envp) < 0)
 		{
 			perror("Error:cant execute command");
 
