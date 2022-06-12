@@ -17,7 +17,7 @@ int execute(char **cmd)
 	}
 	else if (pid == 0)
 	{
-		if (execve(cmd[0], parsed, env) < 0)
+		if (execve(cmd[0], cmd, env) < 0)
 		{
 			perror("Error:cant execute command");
 
