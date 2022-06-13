@@ -5,9 +5,9 @@
  * @cmd: command given by the user
  * Return: 1
  */
-int execute(char **cmd)
+char execute(char **cmd)
 {
-	pid_t pid, wpid;
+	pid_t pid;
 	int status;
 	char **envp = NULL;
 
@@ -30,4 +30,5 @@ int execute(char **cmd)
 		wait(&status);
 		return (1);
 	}
+	return (1);
 }
