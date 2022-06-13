@@ -26,7 +26,7 @@ int main(void)
 			_putchar('\n');
 			break;
 		}
-		buffer[_strlen(buffer) - 1] = "\0";
+		buffer[_strlen(buffer) - 1] = '\0';
 		token = _strtok(buffer);
 		response = execute(token);
 		free(buffer);
