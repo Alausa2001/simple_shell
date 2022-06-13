@@ -13,8 +13,8 @@ unsigned int nbr_spaces(char *s)
 
 	for (i = 0; s[i] != '\0'; i++)
 	{
-		if (s[i] == ' ');
-		cmpt++;
+		if (s[i] == ' ')
+			cmpt++;
 	}
 	return (cmpt);
 }
