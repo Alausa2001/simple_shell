@@ -1,9 +1,12 @@
 #include "main.h"
 /**
  * main - contains the main block of shell
+ * @argc: no of command line args
+ * @argv: array of command line args
+ * @env: the environment pointer
  * Return: 0
  */
-int main(int argc, char **argv)
+int main(int argc, char *argv[], char **env)
 {
 	char *buffer;
 	size_t bufsize = BUFSIZ;
@@ -12,15 +15,8 @@ int main(int argc, char **argv)
 	int pipe = 0;
 	ssize_t read;
 
-	if (argc >= 2)
-	{
-		if (execve(argv[1], argv, NULL) == -1)
-		{
-			perror("Error");
-			exit(-1);
-		}
-		return (0);
-	}
+	(void)argc;
+	(void)argv;
 	do {
 		buffer = (char *)malloc(bufsize * sizeof(char));
 		if (isatty(STDIN_FILENO) == 1)
@@ -37,7 +33,7 @@ int main(int argc, char **argv)
 		}
 		buffer[_strlen(buffer) - 1] = '\0';
 		token = _strtok(buffer);
-		response = execute(token);
+		response = execute(token, env);
 		free(buffer);
 	} while (pipe && response != -1);
 
