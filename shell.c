@@ -3,7 +3,7 @@
  * main - contains the main block of shell
  * Return: 0
  */
-int main(void)
+int main(int argc, char **argv)
 {
 	char *buffer;
 	size_t bufsize = BUFSIZ;
@@ -12,6 +12,15 @@ int main(void)
 	int pipe = 0;
 	ssize_t read;
 
+	if (argc >= 2)
+	{
+		if (execve(argv[1], argv, NULL) == -1)
+		{
+			perror("Error");
+			exit(-1);
+		}
+		return (0);
+	}
 	do {
 		buffer = (char *)malloc(bufsize * sizeof(char));
 		if (isatty(STDIN_FILENO) == 1)
