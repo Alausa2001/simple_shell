@@ -14,6 +14,6 @@ void _puts(char *str);
 int _strlen(char *str);
 unsigned int nbr_spaces(char *s);
 char **_strtok(char *str);
-char execute(char **cmd);
+char execute(char **cmd, char **env);
 
 #endif
