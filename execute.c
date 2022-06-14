@@ -1,4 +1,3 @@
-#include <sys/wait.h>
 #include "main.h"
 /**
  * execute - execute the command
@@ -9,22 +8,19 @@
 char execute(char **cmd, char **env)
 {
 	pid_t pid;
-	int status;
-	char **envp = NULL;
+	int status, i = 0;
+	char str[] = "/bin/", *arg;
 
 	if (strncmp("exit", cmd[0], 4) == 0)
 		return (-1);
 	if (strncmp("env", cmd[0], 3) == 0)
 	{
-		int i = 0;
-
 		while (env[i] != NULL)
 		{
 			printf("%s\n", env[i]);
 			i++;
 		}
 	}
-
 	pid = fork();
 	if (pid < 0)
 	{
@@ -32,7 +28,14 @@ char execute(char **cmd, char **env)
 	}
 	else if (pid == 0)
 	{
-		if (execve(cmd[0], cmd, envp) < 0)
+		if (cmd[0][0] != '/')
+		{
+			strcat(str, cmd[0]);
+			arg = str;
+		}
+		else
+			arg = cmd[0];
+		if (execve(arg, cmd, NULL) < 0)
 		{
 			perror("Error:cant execute command");
 
@@ -42,7 +45,6 @@ char execute(char **cmd, char **env)
 	else
 	{
 		wait(&status);
-		return (1);
 	}
 	return (1);
 }
