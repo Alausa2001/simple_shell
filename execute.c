@@ -30,5 +30,7 @@ char execute(char **cmd)
 		wait(&status);
 		return (1);
 	}
+	if (strncmp("exit", cmd[0], 4) == 0)
+		return (-1);
 	return (1);
 }
