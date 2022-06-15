@@ -8,18 +8,17 @@
 char execute(char **cmd, char **env)
 {
 	pid_t pid;
-	int status, i = 0;
+	int status;
 	char str[] = "/bin/", *arg;
 
 	if (strncmp("exit", cmd[0], 4) == 0)
+	{
+		exit_cmd();
 		return (-1);
+	}
 	if (strncmp("env", cmd[0], 3) == 0)
 	{
-		while (env[i] != NULL)
-		{
-			printf("%s\n", env[i]);
-			i++;
-		}
+		_printenv(env);
 	}
 	pid = fork();
 	if (pid < 0)
@@ -37,9 +36,10 @@ char execute(char **cmd, char **env)
 			arg = cmd[0];
 		if (execve(arg, cmd, NULL) < 0)
 		{
-			perror("./hsh:cant execute command");
+			printf("%s: No such file or directory\n", cmd[0]);
+			_freePtr(cmd);
+			exit_cmd();
 			exit(EXIT_FAILURE);
-
 		}
 	}
 	else

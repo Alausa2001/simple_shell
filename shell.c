@@ -17,6 +17,8 @@ int main(int argc, char *argv[], char **env)
 
 	(void)argc;
 	(void)argv;
+
+
 	do {
 		buffer = (char *)malloc(bufsize * sizeof(char));
 		if (isatty(STDIN_FILENO) == 1)
@@ -31,11 +33,14 @@ int main(int argc, char *argv[], char **env)
 			_putchar('\n');
 			break;
 		}
-		buffer[_strlen(buffer) - 1] = '\0';
-		token = _strtok(buffer);
-		response = execute(token, env);
-		_freePtr(token);
-		free(buffer);
+
+		if (buffer != NULL)
+		{
+			buffer[_strlen(buffer) - 1] = '\0';
+			token = _strtok(buffer);
+			response = execute(token, env);
+			free(buffer);
+		}
 	} while (pipe && response != -1);
 
 	return (0);

@@ -3,18 +3,17 @@
 /**
  * _freePtr - functions that frees memory
  * @str: string memory to be freed
+ * Return: NULL.
  */
-
-void _freePtr(char **str)
+char **_freePtr(char **str)
 {
 	int i = 0;
 
 	while (str[i])
 	{
 		free(str[i]);
-		str[i] = NULL;
 		i++;
 	}
 	free(str);
-	str = NULL;
+	return (NULL);
 }

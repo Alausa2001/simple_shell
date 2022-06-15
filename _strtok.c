@@ -48,6 +48,7 @@ char **_strtok(char *str)
 		token = strtok(NULL, separator);
 		i++;
 	}
+	free(token);
 	tokens[i] = NULL;
 
 	return (tokens);
