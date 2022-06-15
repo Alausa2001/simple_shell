@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * _freeStr - functions that frees memory
+ * _freePtr - functions that frees memory
  * @str: string memory to be freed
  */
 
