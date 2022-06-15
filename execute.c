@@ -11,9 +11,9 @@ char execute(char **cmd, char **env)
 	int status, i = 0;
 	char str[] = "/bin/", *arg;
 
-	if (_strncmp("exit", cmd[0], 4) == 0)
+	if (strncmp("exit", cmd[0], 4) == 0)
 		return (-1);
-	if (_strncmp("env", cmd[0], 3) == 0)
+	if (strncmp("env", cmd[0], 3) == 0)
 	{
 		while (env[i] != NULL)
 		{
@@ -38,9 +38,9 @@ char execute(char **cmd, char **env)
 		if (execve(arg, cmd, NULL) < 0)
 		{
 			perror("./hsh:cant execute command");
+			exit(EXIT_FAILURE);
 
 		}
-		exit(EXIT_FAILURE);
 	}
 	else
 	{
