@@ -11,9 +11,9 @@ char execute(char **cmd, char **env)
 	int status, i = 0;
 	char str[] = "/bin/", *arg;
 
-	if (strncmp("exit", cmd[0], 4) == 0)
+	if (_strncmp("exit", cmd[0], 4) == 0)
 		return (-1);
-	if (strncmp("env", cmd[0], 3) == 0)
+	if (_strncmp("env", cmd[0], 3) == 0)
 	{
 		while (env[i] != NULL)
 		{
@@ -24,7 +24,7 @@ char execute(char **cmd, char **env)
 	pid = fork();
 	if (pid < 0)
 	{
-		perror("Error: unable to fork parent");
+		perror("./hsh");
 	}
 	else if (pid == 0)
 	{
@@ -37,7 +37,7 @@ char execute(char **cmd, char **env)
 			arg = cmd[0];
 		if (execve(arg, cmd, NULL) < 0)
 		{
-			perror("Error:cant execute command");
+			perror("./hsh:cant execute command");
 
 		}
 		exit(EXIT_FAILURE);
