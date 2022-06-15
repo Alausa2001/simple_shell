@@ -9,7 +9,7 @@
 int main(int argc, char *argv[], char **env)
 {
 	char *buffer;
-	size_t bufsize = BUFSIZ;
+	size_t bufsize = BUFSIZE;
 	char **token;
 	int response = 0;
 	int pipe = 0;
@@ -20,7 +20,7 @@ int main(int argc, char *argv[], char **env)
 
 
 	do {
-		buffer = (char *)malloc(bufsize * sizeof(char));
+		buffer = malloc(bufsize * sizeof(char));
 		if (isatty(STDIN_FILENO) == 1)
 		{
 			pipe = 1;
@@ -30,17 +30,17 @@ int main(int argc, char *argv[], char **env)
 		if (read == EOF)
 		{
 			response = -1;
+			free(buffer);
 			_putchar('\n');
 			break;
 		}
 
-		if (buffer != NULL)
-		{
-			buffer[_strlen(buffer) - 1] = '\0';
-			token = _strtok(buffer);
-			response = execute(token, env);
-			free(buffer);
-		}
+		buffer[_strlen(buffer) - 1] = '\0';
+		token = _strtok(buffer);
+		response = execute(token, env);
+		free(token);
+		free(buffer);
+	
 	} while (pipe && response != -1);
 
 	return (0);

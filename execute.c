@@ -13,8 +13,8 @@ char execute(char **cmd, char **env)
 
 	if (strncmp("exit", cmd[0], 4) == 0)
 	{
+		free(cmd);
 		exit_cmd();
-		return (-1);
 	}
 	if (strncmp("env", cmd[0], 3) == 0)
 	{
@@ -37,7 +37,7 @@ char execute(char **cmd, char **env)
 		if (execve(arg, cmd, NULL) < 0)
 		{
 			perror("./hsh");
-			_freePtr(cmd);
+			free(cmd);
 			exit_cmd();
 			exit(EXIT_FAILURE);
 		}

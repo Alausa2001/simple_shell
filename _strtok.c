@@ -30,8 +30,8 @@ char **_strtok(char *str)
 {
 	int i = 0;
 	const char separator[] = " ";
-	unsigned int spaces = nbr_spaces(str);
-	char **tokens = malloc(sizeof(char *) * (spaces + 1));
+	/**unsigned int spaces = nbr_spaces(str);**/
+	char **tokens = malloc(BUFSIZE);
 	char *token;
 
 	if (!tokens)
@@ -48,7 +48,6 @@ char **_strtok(char *str)
 		token = strtok(NULL, separator);
 		i++;
 	}
-	free(token);
 	tokens[i] = NULL;
 
 	return (tokens);

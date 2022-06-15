@@ -5,7 +5,7 @@
  * @str: string memory to be freed
  * Return: NULL.
  */
-char **_freePtr(char **str)
+void _freePtr(char **str)
 {
 	int i = 0;
 
@@ -14,6 +14,4 @@ char **_freePtr(char **str)
 		free(str[i]);
 		i++;
 	}
-	free(str);
-	return (NULL);
 }
