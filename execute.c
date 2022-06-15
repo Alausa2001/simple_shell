@@ -36,7 +36,7 @@ char execute(char **cmd, char **env)
 			arg = cmd[0];
 		if (execve(arg, cmd, NULL) < 0)
 		{
-			printf("%s: No such file or directory\n", cmd[0]);
+			perror("./hsh");
 			_freePtr(cmd);
 			exit_cmd();
 			exit(EXIT_FAILURE);
