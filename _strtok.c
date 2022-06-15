@@ -22,8 +22,8 @@ unsigned int nbr_spaces(char *s)
 
 /**
  * _strtok - this function works as a tokenizer for our shell
- * @str - string to be tokenized
- * Return - tokenized string.
+ * @str: string to be tokenized
+ * Return: tokenized string.
  */
 
 char **_strtok(char *str)
@@ -31,7 +31,7 @@ char **_strtok(char *str)
 	int i = 0;
 	const char separator[] = " ";
 	unsigned int spaces = nbr_spaces(str);
-	char **tokens = malloc (sizeof(char *) * (spaces + 1));
+	char **tokens = malloc(sizeof(char *) * (spaces + 1));
 	char *token;
 
 	if (!tokens)
