@@ -16,6 +16,6 @@ int _strncmp(char *str1, char *str2, int n);
 unsigned int nbr_spaces(char *s);
 char **_strtok(char *str);
 char execute(char **cmd, char **env);
-void _freeStr(char **str);
+void _freePtr(char **str);
 
 #endif
