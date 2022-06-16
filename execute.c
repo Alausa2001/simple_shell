@@ -38,7 +38,6 @@ char execute(char **cmd, char **env)
 		{
 			perror("./hsh");
 			free(cmd);
-			exit_cmd();
 			exit(EXIT_FAILURE);
 		}
 	}
