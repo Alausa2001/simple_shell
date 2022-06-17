@@ -16,6 +16,7 @@ void execute(char *buffer, char **cmd, char **env)
 	{
 		free(cmd);
 		free(buffer);
+		exit(2);
 		exit_cmd();
 	}
 	if (strncmp("env", cmd[0], 3) == 0)
@@ -41,7 +42,7 @@ void execute(char *buffer, char **cmd, char **env)
 			perror("./hsh");
 			free(buffer);
 			free(cmd);
-			exit(EXIT_FAILURE);
+			exit(2);
 		}
 	}
 	else
