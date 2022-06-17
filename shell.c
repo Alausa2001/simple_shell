@@ -10,8 +10,7 @@ int main(int argc, char *argv[], char **env)
 {
 	char *buffer;
 	size_t bufsize = 0;
-	char **token;
-	int response = 0;
+	char **token = NULL;
 	int pipe = 0;
 	ssize_t read;
 
@@ -19,16 +18,15 @@ int main(int argc, char *argv[], char **env)
 	(void)argv;
 
 	do {
-		buffer = malloc(bufsize);
 		if (isatty(STDIN_FILENO) == 1)
 		{
 			pipe = 1;
 			_puts("aoshell$ ");
 		}
+		buffer = malloc(bufsize);
 		read = getline(&buffer, &bufsize, stdin);
 		if (read == EOF)
 		{
-			response = -1;
 			free(buffer);
 			_putchar('\n');
 			break;
@@ -36,10 +34,10 @@ int main(int argc, char *argv[], char **env)
 
 		buffer[_strlen(buffer) - 1] = '\0';
 		token = _strtok(buffer);
-		response = execute(token, env);
+		execute(buffer, token, env);
 		free(token);
-		free(buffer);	
-	} while (pipe && response != -1);
+		free(buffer);
+	} while (pipe);
 
 	return (0);
 }

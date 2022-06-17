@@ -3,9 +3,10 @@
  * execute - execute the command
  * @cmd: command given by the user
  * @env: environment pointer
+ * @buffer: string to be freed
  * Return: 1
  */
-char execute(char **cmd, char **env)
+void execute(char *buffer, char **cmd, char **env)
 {
 	pid_t pid;
 	int status;
@@ -14,6 +15,7 @@ char execute(char **cmd, char **env)
 	if (strncmp("exit", cmd[0], 4) == 0)
 	{
 		free(cmd);
+		free(buffer);
 		exit_cmd();
 	}
 	if (strncmp("env", cmd[0], 3) == 0)
@@ -37,6 +39,7 @@ char execute(char **cmd, char **env)
 		if (execve(arg, cmd, NULL) < 0)
 		{
 			perror("./hsh");
+			free(buffer);
 			free(cmd);
 			exit(EXIT_FAILURE);
 		}
@@ -45,5 +48,4 @@ char execute(char **cmd, char **env)
 	{
 		wait(&status);
 	}
-	return (1);
 }

@@ -17,7 +17,7 @@ int _strlen(char *str);
 int _strncmp(char *str1, char *str2, int n);
 unsigned int nbr_spaces(char *s);
 char **_strtok(char *str);
-char execute(char **cmd, char **env);
+void execute(char *buffer, char **cmd, char **env);
 void _freePtr(char **str);
 void _printenv(char **env);
 void exit_cmd(void);
