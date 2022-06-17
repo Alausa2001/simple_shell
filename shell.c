@@ -9,7 +9,7 @@
 int main(int argc, char *argv[], char **env)
 {
 	char *buffer;
-	size_t bufsize = 0;
+	size_t bufsize = BUFSIZE;
 	char **token = NULL;
 	int pipe = 0;
 	ssize_t read;
