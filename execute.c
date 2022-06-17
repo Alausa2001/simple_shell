@@ -21,8 +21,6 @@ void execute(char *buffer, char **cmd, char **env)
 	if (strncmp("env", cmd[0], 3) == 0)
 	{
 		_printenv(env);
-		free(buffer);
-		free(cmd);
 	}
 	pid = fork();
 	if (pid < 0)
