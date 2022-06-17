@@ -6,7 +6,7 @@
  * @buffer: string to be freed
  * Return: 1
  */
-void execute(char *buffer, char **cmd, char **env)
+void execute(char **cmd, char **env)
 {
 	pid_t pid;
 	int status;
@@ -14,8 +14,7 @@ void execute(char *buffer, char **cmd, char **env)
 
 	if (strncmp("exit", cmd[0], 4) == 0)
 	{
-		free(cmd);
-		free(buffer);
+		_freePtr(cmd);
 		exit_cmd();
 	}
 	if (strncmp("env", cmd[0], 3) == 0)
@@ -39,8 +38,7 @@ void execute(char *buffer, char **cmd, char **env)
 		if (execve(arg, cmd, NULL) < 0)
 		{
 			perror("./hsh");
-			free(buffer);
-			free(cmd);
+			_freePtr(cmd);
 			exit(EXIT_FAILURE);
 		}
 	}

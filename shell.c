@@ -34,9 +34,8 @@ int main(int argc, char *argv[], char **env)
 
 		buffer[_strlen(buffer) - 1] = '\0';
 		token = _strtok(buffer);
-		execute(buffer, token, env);
-		free(token);
-		free(buffer);
+		execute(token, env);
+		_freePtr(token);
 	} while (pipe);
 
 	return (0);
